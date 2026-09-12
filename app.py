@@ -320,7 +320,10 @@ def colour_status(val):
                 "Resolved": "background-color:#14532d;color:#86efac"}
     return colours.get(val, "")
 
-styled = log_view[display_cols].style.applymap(colour_status, subset=["status"])
+try:
+    styled = log_view[display_cols].style.map(colour_status, subset=["status"])
+except AttributeError:
+    styled = log_view[display_cols].style.applymap(colour_status, subset=["status"])
 st.dataframe(styled, use_container_width=True, height=400)
 
 st.caption(f"Showing {len(log_view)} rows")
