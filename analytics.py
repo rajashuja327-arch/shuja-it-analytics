@@ -13,8 +13,13 @@ DATA_PATH = Path(__file__).parent / "data" / "it_operations_log.csv"
 
 # ── Data Loading & Cleaning ────────────────────────────────────────────────────
 def load_data(path: str | Path = DATA_PATH) -> pd.DataFrame:
-    """Load CSV and perform initial type casting."""
-    df = pd.read_csv(path, parse_dates=["timestamp"])
+   def load_data(path: str = None) -> pd.DataFrame:
+  import os
+    base_dir = os.path.dirname(os.path.abspath(_file_))
+    file_path = os.path.join(base_dir, 'data', 'it_operations_log.csv')
+    if not os.path.exists(file_path):
+        file_path = 'it_operations_log.csv'
+    df = pd.read_csv(file_path, parse_dates=["timestamp"])
     df.columns = df.columns.str.strip()
     return df
 
