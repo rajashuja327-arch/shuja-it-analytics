@@ -8,7 +8,7 @@ def load_data(path: str = None) -> pd.DataFrame:
     if not os.path.exists(file_path):
         file_path = 'it_operations_log.csv'
     df = pd.read_csv(file_path, parse_dates=["timestamp"])
-    df.columns = df.columns.str.strip()
+  DATA_PATH = Path("data") / "it_operations_log.csv"
     return df
 
 def clean_data(df: pd.DataFrame) -> pd.DataFrame:
